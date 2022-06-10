@@ -53,6 +53,7 @@ public class ApiController {
     public ResponseEntity<ResponseWrapper> readAddress(@PathVariable("id") Long id) throws Exception {
 
         AddressDTO addressToReturn=addressService.findById(id);
+        addressToReturn.setCurrentTemperature(addressService.getCurrentWeather(addressToReturn.getCity()).getCurrent().getTemperature());
         return ResponseEntity.ok(new ResponseWrapper("Address is succesfully retrived.",addressToReturn));
     }
 
@@ -62,7 +63,7 @@ public class ApiController {
 
         addressDTO.setId(id);
         AddressDTO addressToReturn= addressService.update(addressDTO);
-
+        addressToReturn.setCurrentTemperature(addressService.getCurrentWeather(addressToReturn.getCity()).getCurrent().getTemperature());
         return addressToReturn;
     }
 
