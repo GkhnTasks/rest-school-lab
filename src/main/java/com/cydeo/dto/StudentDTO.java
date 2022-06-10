@@ -1,10 +1,7 @@
 package com.cydeo.dto;
 
 import com.cydeo.enums.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer"},ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentDTO {
 
     @JsonIgnore
@@ -35,7 +33,7 @@ public class StudentDTO {
 
     private Status status;
 
-    @JsonManagedReference(value = "address-reference")
+
     private AddressDTO address;
 
     private ParentDTO parent;
